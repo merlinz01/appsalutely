@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    environment: release
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Type-check
+        run: npm run type-check
+      # - name: Test
+      #   run: npm test
+      - name: Build
+        run: npm run build
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-pypi:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up UV
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: latest
+      - name: Install dependencies
+        run: uv sync --dev
+      - name: Lint
+        run: uv run poe lint
+      - name: Type-check
+        run: uv run poe type-check
+      # - name: Test
+      #   run: uv run poe test
+      - name: Build
+        run: uv build
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.12.4
+
+  create-release:
+    needs: [publish-npm, publish-pypi]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
