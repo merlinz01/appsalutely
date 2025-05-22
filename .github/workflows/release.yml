@@ -63,11 +63,11 @@ jobs:
   create-release:
     needs: [publish-npm, publish-pypi]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
