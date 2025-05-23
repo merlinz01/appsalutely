@@ -14,10 +14,14 @@ withDefaults(
     minWidth?: string | number
     maxWidth?: string | number
     loading?: boolean
+    usernameLabel?: string
+    passwordLabel?: string
   }>(),
   {
-    title: 'Login',
-    submitButtonText: 'Login',
+    title: 'Log in',
+    submitButtonText: 'Log in',
+    usernameLabel: 'Username',
+    passwordLabel: 'Password',
   },
 )
 const valid = ref(false)
@@ -28,14 +32,14 @@ const valid = ref(false)
       <VCardText>
         <VTextField
           v-model="username"
-          label="Username"
+          :label="usernameLabel"
           :rules="[(v) => !!v || 'Username is required']"
           persistent-placeholder
           autofocus
         />
         <VTextField
           v-model="password"
-          label="Password"
+          :label="passwordLabel"
           type="password"
           :rules="[(v) => !!v || 'Password is required']"
           persistent-placeholder
