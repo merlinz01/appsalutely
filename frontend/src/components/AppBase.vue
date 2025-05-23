@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, watch, useSlots } from 'vue'
+import { ref, watch, useSlots, onBeforeMount } from 'vue'
 import { useRouter, RouterView } from 'vue-router'
 import {
   VApp,

@@ -1,12 +1,16 @@
-import { defineConfig, type UserConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import path from 'path'
 
-const config: UserConfig = {
+// https://vite.dev/config/
+// https://vite.dev/guide/build.html#library-mode
+export default defineConfig({
+  plugins: [vue(), cssInjectedByJsPlugin()],
   build: {
     lib: {
-      entry: 'src/index.ts',
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'appsalutely',
-      fileName: 'index',
     },
     rollupOptions: {
       external: ['vue', 'vue-router', 'pinia', 'vuetify', 'vuetify/components'],
@@ -21,6 +25,4 @@ const config: UserConfig = {
       },
     },
   },
-  plugins: [Vue()],
-}
-export default defineConfig(config)
+})

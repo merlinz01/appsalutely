@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, defineModel, defineEmits, computed, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { VBtn, VCard, VCardText, VForm, VOtpInput } from 'vuetify/components'
 
 const otp = defineModel<string>('otp', { default: '' })

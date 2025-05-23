@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { VBreadcrumbs, VContainer } from 'vuetify/components'
-import { defineProps, withDefaults } from 'vue'
 
 withDefaults(
   defineProps<{

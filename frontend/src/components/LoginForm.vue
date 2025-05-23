@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, defineModel, defineEmits, ref } from 'vue'
+import { ref } from 'vue'
 import { VBtn, VCard, VCardText, VForm, VTextField } from 'vuetify/components'
 
 const username = defineModel<string>('username', { default: '' })
