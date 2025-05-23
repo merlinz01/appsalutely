@@ -97,15 +97,16 @@ onBeforeMount(() => {
       :rail="drawerDocked"
       :mobile="drawerDocked ? false : undefined"
     >
-      <VList class="h-100 d-flex flex-column">
+      <VList class="h-100 d-flex flex-column" nav>
         <slot name="drawer" />
+        <div class="flex-grow-1" />
         <VBtn
           @click="drawerDocked = !drawerDocked"
           icon="mdi-pin-outline"
           rounded="rounded"
           density="comfortable"
           :title="drawerDocked ? 'Undock sidebar' : 'Dock sidebar'"
-          class="my-1 mx-3 ms-auto"
+          class="ma-1 ms-auto"
           :variant="drawerDocked ? 'tonal' : 'text'"
         />
       </VList>
