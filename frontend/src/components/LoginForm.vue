@@ -29,7 +29,7 @@ const valid = ref(false)
 <template>
   <VCard :title="title" :min-width="minWidth" :max-width="maxWidth">
     <VForm @submit.prevent="emit('submit', username, password)" v-model="valid">
-      <VCardText>
+      <VCardText class="d-flex flex-column">
         <VTextField
           v-model="username"
           :label="usernameLabel"
@@ -44,16 +44,16 @@ const valid = ref(false)
           :rules="[(v) => !!v || 'Password is required']"
           persistent-placeholder
         />
-        <div class="d-flex justify-center">
-          <VBtn
-            :disabled="!valid"
-            type="submit"
-            color="primary"
-            variant="flat"
-            :text="submitButtonText"
-            :loading="loading"
-          />
-        </div>
+        <VBtn
+          :disabled="!valid"
+          type="submit"
+          color="primary"
+          variant="flat"
+          :text="submitButtonText"
+          :loading="loading"
+          class="align-self-center"
+        />
+        <slot name="beneath" />
       </VCardText>
     </VForm>
   </VCard>

@@ -36,18 +36,18 @@ watch(otp, () => {
 <template>
   <VCard :title="title" :subtitle="subtitle" :min-width="minWidth" :max-width="maxWidth">
     <VForm @submit.prevent="emit('submit', otp)" :model-value="valid">
-      <VCardText>
+      <VCardText class="d-flex flex-column">
         <VOtpInput v-model="otp" label="OTP" persistent-placeholder autofocus :length="length" />
-        <div class="d-flex justify-center">
-          <VBtn
-            :disabled="!valid"
-            type="submit"
-            color="primary"
-            variant="flat"
-            :text="submitButtonText"
-            :loading="loading"
-          />
-        </div>
+        <VBtn
+          :disabled="!valid"
+          type="submit"
+          color="primary"
+          variant="flat"
+          :text="submitButtonText"
+          :loading="loading"
+          class="align-self-center"
+        />
+        <slot name="beneath" />
       </VCardText>
     </VForm>
   </VCard>
