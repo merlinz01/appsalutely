@@ -69,3 +69,10 @@ sequence = [
     { ref = "type-check-backend" },
     { ref = "type-check-frontend" }
 ]
+
+[tool.poe.tasks.ci-tasks]
+sequence = [
+    { ref = "lint-backend" },
+    { ref = "format-backend" },
+    { ref = "type-check-backend" }
+]

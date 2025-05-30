@@ -16,7 +16,7 @@ jobs:
         with:
           version: latest
       - name: Install Python dependencies
-        run: uv sync --dev
+        run: uv sync --dev --all-extras
       - name: Set up NodeJS
         uses: actions/setup-node@v4
         with:
@@ -26,7 +26,7 @@ jobs:
         run: npm ci
         working-directory: frontend
       - name: Run prerelease checks
-        run: poe prerelease
+        run: uv run poe prerelease
 
   publish-npm:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
         with:
           version: latest
       - name: Install dependencies
-        run: uv sync --dev
+        run: uv sync --dev --all-extras
       - name: Build
         run: uv build
       - name: Publish to PyPI
