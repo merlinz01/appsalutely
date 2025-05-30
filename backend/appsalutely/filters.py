@@ -200,7 +200,7 @@ class FilterSet(BaseModel, Generic[T]):
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail=e.errors(include_url=False, include_context=False),
                 )
-            items = [
+            items: list[FilterItem[T]] = [
                 FilterItem(field=f[0], op=Operation(f[1]), value=f[2]) for f in params
             ]
             return FilterSet(model, items)
