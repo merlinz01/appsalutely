@@ -39,11 +39,33 @@ dev = [
     "ruff>=0.11.10",
 ]
 
-[tool.poe.tasks.lint]
+[tool.poe.tasks.lint-backend]
 cmd = "ruff check backend"
 
-[tool.poe.tasks.format]
+[tool.poe.tasks.lint-frontend]
+cwd = "frontend"
+cmd = "npm run lint"
+
+[tool.poe.tasks.format-backend]
 cmd = "ruff format backend"
 
-[tool.poe.tasks.type-check]
+[tool.poe.tasks.format-frontend]
+cwd = "frontend"
+cmd = "npm run format"
+
+[tool.poe.tasks.type-check-backend]
 cmd = "mypy backend"
+
+[tool.poe.tasks.type-check-frontend]
+cwd = "frontend"
+cmd = "npm run type-check"
+
+[tool.poe.tasks.prerelease]
+sequence = [
+    { ref = "lint-backend" },
+    { ref = "lint-frontend" },
+    { ref = "format-backend" },
+    { ref = "format-frontend" },
+    { ref = "type-check-backend" },
+    { ref = "type-check-frontend" }
+]
