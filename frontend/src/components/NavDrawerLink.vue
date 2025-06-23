@@ -3,13 +3,15 @@ import type { RouteLocationRaw } from 'vue-router'
 import { VListItem, VIcon } from 'vuetify/components'
 
 defineProps<{
-  to: RouteLocationRaw
+  to?: RouteLocationRaw
+  href?: string
+  target?: string
   icon: string
   text: string
 }>()
 </script>
 <template>
-  <VListItem role="option" :to="to" slim>
+  <VListItem role="option" :to="to" :href="href" :target="target" slim>
     <template #prepend>
       <VIcon :icon="icon" />
     </template>
