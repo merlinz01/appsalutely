@@ -22,3 +22,17 @@ def forward_received_email(email: EmailMessage, from_addr: str, to_addr: str) ->
         email.replace_header("BCC", "")
     except KeyError:
         pass
+
+
+def looks_like_autoreply(email: EmailMessage):
+    if "automatic reply" in email.get("Subject", "").lower():
+        return True
+    if email.get("X-Auto-Response-Suppress", "").lower() in (
+        "all",
+        "dr",
+        "autoreply",
+    ):
+        return True
+    if email.get("Auto-Submitted", "no").lower() != "no":
+        return True
+    return False
