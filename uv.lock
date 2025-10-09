@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 
 [[package]]
@@ -39,7 +39,7 @@ wheels = [
 
 [[package]]
 name = "appsalutely"
-version = "0.1.5"
+version = "0.1.9"
 source = { editable = "." }
 
 [package.optional-dependencies]
@@ -312,8 +312,8 @@ version = "0.25.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiosqlite" },
-    { name = "iso8601", marker = "python_full_version < '4.0'" },
-    { name = "pypika-tortoise", marker = "python_full_version < '4.0'" },
+    { name = "iso8601", marker = "python_full_version < '4'" },
+    { name = "pypika-tortoise", marker = "python_full_version < '4'" },
     { name = "pytz" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d8/02/89777797d2c74386e21fca4a879d15eef6a0a789e4b9564355e94c367e6e/tortoise_orm-0.25.0.tar.gz", hash = "sha256:7d0aaf31c33a25a9efad8f94b44ee50febae15889f4da119cf184ffe98002673", size = 127955, upload-time = "2025-04-14T11:42:38.494Z" }
