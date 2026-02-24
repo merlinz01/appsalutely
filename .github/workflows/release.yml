@@ -35,6 +35,9 @@ jobs:
       run:
         working-directory: ./frontend
     needs: [prerelease]
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,13 +52,12 @@ jobs:
         run: npm run build
       - name: Publish to NPM
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-pypi:
     runs-on: ubuntu-latest
     environment: release
     permissions:
+      contents: read
       id-token: write
     needs: [prerelease]
     steps:
