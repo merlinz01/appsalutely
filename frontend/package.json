@@ -1,6 +1,9 @@
 {
   "name": "appsalutely",
-  "version": "0.1.10",
+  "version": "0.1.12",
+  "repository": {
+    "url": "https://github.com/merlinz01/appsalutely"
+  },
   "type": "module",
   "files": [
     "dist"
